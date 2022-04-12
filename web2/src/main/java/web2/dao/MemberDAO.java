@@ -92,11 +92,7 @@ public class MemberDAO {
 		return dto;
 	}
 	
-	
-	
-	
-	
-	
+
 	// 삽입 
 	// Create : Insert => 숫자(1 : 성공, 0 : 실패)
 	
@@ -130,5 +126,62 @@ public class MemberDAO {
 		return flag;
 
 	}
+	
+	// 삭제 : Delete => 숫자(1 : 성공, 0 : 실패)
+	//      delete from member where id = 1;
+	public boolean delete(int id) {
+		boolean flag = false;
+		
+		PreparedStatement pstmt = null;
+		String sql = "delete from member where id=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result > 0) {
+				flag = true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return flag;
+	}
+	
+	// 수정 - Update => 숫자(1 : 성공, 0 : 실패)
+	// sql : "update member set addr = '변경할주소' where id = 1;
+	public boolean update(int id, String addr) {
+		boolean result = false;
+		
+		PreparedStatement pstmt = null;
+		String sql = "update member set addr=? where id=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, addr);
+			pstmt.setInt(2, id);
+			
+			int cnt = pstmt.executeUpdate();
+			
+			if(cnt > 0) result = true;
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+		}
+		
+		return result;
+
+	}
+	
+	
 	
 }

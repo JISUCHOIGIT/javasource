@@ -11,6 +11,7 @@
 <body>
 	<div class="container-fluid">
 		<div class="topnav">
+		<%-- 여기는 소문자이고 실제 파일명은 대문자로 시작해서 오류 난거에요 --%>
 			<a href="../insert.jsp">MEMBER 입력</a>
 			<a href="../list.jsp">MEMBER 전체 조회</a>
 		</div>

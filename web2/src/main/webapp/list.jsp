@@ -6,8 +6,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
-    // 커넥션 먼저 얻고 dao에 con 넣어주기
+	<%
+   		 // 커넥션 먼저 얻고 dao에 con 넣어주기
     	Connection con = JdbcUtil.getConnection();
     	MemberDAO dao = new MemberDAO(con);
     	

@@ -9,8 +9,8 @@
 	MemberDTO dto = (MemberDTO)request.getAttribute("dto");
 
 %>
-	<h1>Read</h1>
-<form action="" method = "post">
+	<h1>Update</h1>
+<form action="updateProcess.jsp" method = "post">
 	<div class = "form-group row">
 		<label for="Id" class="col-sm-2 col-form-label">Id</label>
 		<div class="col-sm-8">
@@ -26,7 +26,7 @@
 	<div class = "form-group row">
 		<label for="addr" class="col-sm-2 col-form-label">Addr</label>
 		<div class="col-sm-8">
-			<input type="text" name="addr" id="addr" class="form-control" value="<%=dto.getAddr()%>" readonly/>
+			<input type="text" name="addr" id="addr" class="form-control" value="<%=dto.getAddr()%>"/>
 		</div>
 	</div>
 	<div class = "form-group row">
@@ -44,29 +44,18 @@
 	<div class = "form-group row">
 		<div class="col-sm-10">
 			<button type="submit" class ="btn btn-primary">수정</button>
-			<button type="submit" class ="btn btn-danger">삭제</button>
+			<button type="button" class ="btn btn-danger">취소</button>
 		</div>
 	</div>
 </form>
 <script src="/js/jquery-3.6.0.min.js"></script>
 <script>
-	
-	//전송할 폼 가져오기
-	let form = $("form");
 
-	//삭제 클릭 시 removeProcess로 폼 보내기
-	$(".btn-danger").click(function(e){
-		e.preventDefault();
-		$(form).attr("action","removeProcess.jsp");
-		$(form).submit();
+	//취소 클릭 시 list로 이동
+	$(".btn-danger").click(function(){
+		location.href="/list.jsp";
 	})
 	
-	//수정 클릭 시 modifyProcess로 폼 전송
-	$(".btn-primary").click(function(e){
-		e.preventDefault();
-		$(form).attr("action","modifyProcess.jsp");
-		$(form).submit();
-	})
 </script>
 
 <%@ include file="./layout/footer.jsp" %>
