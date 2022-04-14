@@ -1,5 +1,6 @@
 package book.dao;
 
+import java.awt.print.Book;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -137,9 +138,76 @@ public class BookDAO {
 		}
 	
 		return flag;
+
+	}
+	
+	// 검색
+	// select * from booktbl where code=?
+	// select * from booktbl where writer=? / writer like '%길동%';
+	
+	public List<BookDTO> searchList(String criteria, String keyword) {
+		
+		List<BookDTO> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="";
+		
+		try {
+			if (criteria.equals("writer")) {
+				
+				sql = "select * from booktbl where writer like ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,"%"+keyword+"%");
+				
+			} else {
+				sql = "select * from booktbl where code=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, Integer.parseInt(keyword));
+
+			}
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BookDTO dto = new BookDTO();
+				dto.setCode(rs.getInt("code"));
+				dto.setTitle(rs.getString("title"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setPrice(rs.getInt("price"));
+				
+				list.add(dto);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+
+		}
+	
+		
+		return list;
+		
+		
+		
+		
 		
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

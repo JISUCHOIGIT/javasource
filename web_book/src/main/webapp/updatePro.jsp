@@ -30,8 +30,4 @@
 	response.sendRedirect(path);
 	JdbcUtil.close(con);
 
-
-
-
-
 %>
