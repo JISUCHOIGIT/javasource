@@ -36,11 +36,12 @@
 <%--로그인 후 메뉴 --%>
 <%
 
-	MemberDTO loginDto = (MemberDTO)session.getAttribute("loginDto");
+	//MemberDTO loginDto = (MemberDTO)session.getAttribute("loginDto");
 
 %>
+	<%--let name = '<%=loginDto.getName()--%>';
 <script>
-	let name = '<%=loginDto.getName()%>';
+	let name = '${loginDto.name}';
 </script>
 <script src="/js/menu.js"></script>
 <%-- 정보수정 들어왔으니 정보수정 버튼 없애기 --%>

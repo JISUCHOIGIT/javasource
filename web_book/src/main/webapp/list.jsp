@@ -3,11 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file = "/layout/header.jsp" %>
-<%
+<%-- <%
 
 	List<BookDTO> list = (List<BookDTO>)request.getAttribute("list");
 
-%>
+%> --%>
 
 <%-- 화면 위치 --%>
 <h1>도서 목록 보기</h1>
@@ -22,14 +22,15 @@
   </thead>
   <tbody>
   <%-- 도서 목록 --%>
-  <% for(BookDTO dto:list) { %>
+  <%-- <% for(BookDTO dto:list) { %> --%>
+  <c:forEach var="dto" items="${list}">
 	  <tr>
-	  <td><%=dto.getCode() %></td>
-	  <td><%=dto.getTitle() %></td>
-	  <td><%=dto.getWriter() %></td>
-	  <td><%=dto.getPrice() %></td>
+	  <td>${dto.code}></td>
+	  <td>${dto.title}></td>
+	  <td>${dto.writer}></td>
+	  <td>${dto.price}></td>
 	  </tr>
- 	<% } %>
+	</c:forEach>
   </tbody>
 </table>
 <%@ include file = "/layout/footer.jsp" %>

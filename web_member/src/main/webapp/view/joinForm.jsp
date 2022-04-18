@@ -56,6 +56,34 @@
 	</div>
 </form>
 </div>
+<!-- <script>
+function dupId(){
+		let userid = $("#userid").val();
+	$.ajax({
+		// 사용자가 입력한 아이디 가져오기
+		url : 'checkId.jsp',
+		type : 'post',
+		data : {
+			userid : userid
+		},
+		success:function(data){
+			console.log(data);
+			
+			if($.trim(data) == "true"){
+				alert("아이디는 사용할 수 있습니다.");
+		
+			}else {
+				alert("아이디는 사용할 수 없습니다.");
+			}
+		}
+	})
+	
+	
+}
+
+</script>
+ -->
+
 
 <%-- 사용자 validate 코드 삽입하기 --%>
 <script src="/js/register.js"></script>

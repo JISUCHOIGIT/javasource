@@ -4,7 +4,7 @@
 <%@ include file="../layout/header.jsp" %>
 <%
 	//세션에서 로그인 정보 가져오기
-	MemberDTO loginDto = (MemberDTO)session.getAttribute("loginDto");
+	//MemberDTO loginDto = (MemberDTO)session.getAttribute("loginDto");
 
 %>
 <form id="leaveform" action="leavePro.jsp" method="post">
@@ -15,7 +15,7 @@
 	 	<div class="card-body">	
 			<div class="form-group row justify-content-center">		
 				<div class="col-sm-10">	
-					<input type="text" name="userid" id="userid" class="form-control" value="<%=loginDto.getUserid()%>" readonly/>
+					<input type="text" name="userid" id="userid" class="form-control" value="${loginDto.userid}" readonly/>
 			 		<small id="userid" class="text-info"></small>		
 				</div>
 			</div>	
@@ -33,9 +33,14 @@
 	</div>		
 </form>
 
-<script>
+<%-- <script>
 	let name = '<%=loginDto.getName()%>';
+</script> --%>
+
+<script>
+	let name = '${loginDto.name}';
 </script>
+
 <script src="/js/menu.js"></script>
 <%-- 회원탈퇴 들어왔으니 회원탈퇴 버튼 없애기 --%>
 <script> // 문서가 들어온 다음에 function 기능 삽입

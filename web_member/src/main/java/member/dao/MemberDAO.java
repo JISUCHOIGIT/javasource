@@ -143,6 +143,34 @@ public class MemberDAO {
 		
 		return flag;
 	}
+	// 중복 아이디 검사 메소드
+	// select userid from membertbl where userid='hong124';
+	public boolean checkId(String userid) {
+		boolean flag = true;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select userid from membertbl where userid=?";
+		
+		try {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				flag = false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return flag;
+	}
 
 }
 
